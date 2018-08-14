@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css?family=Comfortaa|Lato');
+* {
+    box-sizing: border-box;
+}
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background: #96DB92;
+
+    font-family: 'Lato', sans-serif;
+}
+
+input {
+    /* border-radius: 100px; */
+    border-style: none;
+    border-bottom: lightgray 1px solid;
+    width: 100%;
+    outline: none;
+    padding: 10px;
+    /* padding-left: 20px; */
+}
+
+input:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+input:nth-last-child(2) {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, .25);
+    border: none;
+}
+
+button {
+    border: none;
+    height: 3rem;
+    width: 100%;
+    padding-top: 10px;
+
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    position: relative;
+    top: -10px;
+    z-index: -10;
+
+    background-color: #678D58;
+}
+
+.inputContainer {
+    width: 60%;
+    min-width: 200px;
+    max-width: 300px;
+}
+
+.headFont {
+    font-family: 'comfortaa', serif;
+    color: #ae003d;
+}
+
+.red {
+    color: #fd393e;
+}
+
+.white {
+    color: white;
+}
+
+.logo {
+    max-width: 60%;
+    min-width: 100px;
+}

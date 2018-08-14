@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Comfortaa|Lato');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background: #96DB92;
+
+    font-family: 'Lato', sans-serif;
+}
+
+.headFont {
+    font-family: 'comfortaa', serif;
+    color: #ae003d;
+}
+
+.red {
+    color: #fd393e;
+}
+
+.white {
+    color: white;
+}

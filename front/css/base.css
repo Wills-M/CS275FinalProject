@@ -149,7 +149,6 @@ header {
     position: relative;
 }
 
-
 .birdImg {
     display: inline-block;
     background-image: url("../assets/img/example_bird.jpg");
@@ -158,6 +157,21 @@ header {
     background-position: center;
     height: 100%;
     width: 30%;
+}
+
+.menu {
+    height: calc( 100vh - 3.5rem );
+    width: 0vw;
+    position: fixed;
+    top: 3.5rem;
+    left: 0;
+    z-index: 20;
+
+    transition: width .25s ease-in-out;
+}
+
+#menuToggle:checked + .menu {
+    width: 75vw;
 }
 
 .red {
@@ -195,4 +209,8 @@ header {
 
 .bodyFont {
     font-family: 'Lato', sans-serif;
+}
+
+.invisible {
+    display:none;
 }

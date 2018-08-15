@@ -14,6 +14,10 @@ app.get('/map', function(req, res) {  //The Google Map feature showing the birds
 	
 });
 
+app.get('/list', function(req, res) {  //When the users select a list, this will show the list of birds
+	
+});
+
 app.listen(8080, function() {  // notifies in the command prompt that the server is running
 	console.log('Server Started..............')
 });

@@ -161,7 +161,7 @@ header {
     min-width: 30%;
 }
 
-.menu {
+.menuDisp {
     height: calc( 100vh - 3.5rem );
     width: 75vw;
     position: fixed;
@@ -172,9 +172,24 @@ header {
     transition: left .5s ease-in-out;
 }
 
-#menuToggle:checked + .menu {
+#menuToggle:checked + .menuDisp {
     /* display: initial; */
     left: 0;
+}
+
+.menu {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu > *:last-child {
+    position: absolute;
+    bottom: 0; 
+}
+
+.menuItem {
+    padding: 1rem;
+    border-bottom: 1px solid #678D58;
 }
 
 .red {

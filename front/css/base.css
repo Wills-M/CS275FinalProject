@@ -131,16 +131,17 @@ header {
 }
 
 .resultItem span {
+    display: inline-block;
     margin-left: 1rem;
 }
 
 .resultItem .butCont {
     margin-left: auto;
     margin-right: 1rem;
-
 }
 
 .butCont button {
+    display: block;
     padding: 0;
 }
 
@@ -157,21 +158,23 @@ header {
     background-position: center;
     height: 100%;
     width: 30%;
+    min-width: 30%;
 }
 
 .menu {
     height: calc( 100vh - 3.5rem );
-    width: 0vw;
+    width: 75vw;
     position: fixed;
     top: 3.5rem;
-    left: 0;
+    left: -75%;
+    /* display: none; */
     z-index: 20;
-
-    transition: width .25s ease-in-out;
+    transition: left .5s ease-in-out;
 }
 
 #menuToggle:checked + .menu {
-    width: 75vw;
+    /* display: initial; */
+    left: 0;
 }
 
 .red {

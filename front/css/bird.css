@@ -1,0 +1,15 @@
+.birdImg {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.butCont {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    height: 3rem;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+

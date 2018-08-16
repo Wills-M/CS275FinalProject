@@ -114,52 +114,6 @@ header {
     filter: drop-shadow( 0px 3px 5px rgba( 0, 0, 0, .25 ));
 }
 
-.resultItem {
-    position: relative;
-    height: 5rem;
-    display: flex;
-    align-items: center;
-}
-
-.resultItem:after {
-    position: absolute;
-    bottom: .1px;
-    right: 0;
-    width: 70%;
-    border-bottom: 1px solid lightgray;
-    content: '';
-}
-
-.resultItem span {
-    display: inline-block;
-    margin-left: 1rem;
-}
-
-.resultItem .butCont {
-    margin-left: auto;
-    margin-right: 1rem;
-}
-
-.butCont button {
-    display: block;
-    padding: 0;
-}
-
-.resultItem div {
-    display: inline-block;
-    position: relative;
-}
-
-.birdImg {
-    display: inline-block;
-    background-image: url("../assets/img/example_bird.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 100%;
-    width: 30%;
-    min-width: 30%;
-}
 
 .menuDisp {
     height: calc( 100vh - 3.5rem );

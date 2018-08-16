@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/bird.css">
+</head>
+
+<body>
+
+    <header class="darkGreenBkg">
+        <label class="menuBut" for="menuToggle">
+            <img class="whiteFill" src="assets/icons/menu.svg" alt="menu button">
+        </label>
+        <div class="searchCont">
+            <select class="searchOpt whiteBkg bodyFont">
+                <option value="bird bodyFont">Birds</option>
+                <option value="loc bodyFont">Location</option>
+            </select>
+            <input class="searchBar bodyFont" type="text">
+            <button class="gpsBut">
+                <img class="whiteFill" src="assets/icons/gps.svg" alt="">
+            </button>
+        </div>
+    </header>
+
+    <input class="invisible" id="menuToggle" type="checkbox">
+    <div class="menuDisp greenBkg">
+        <ul class="menu">
+            <li class="menuItem">
+                <label for="menuToggle">Close Menu</label>
+            </li>
+            <li class="menuItem">List 1</li>
+            <li class="menuItem">List 2</li>
+            <li class="menuItem">List 3</li>
+            <li class="menuItem">+ Add List</li>
+            <li class="menuItem">Logout</li>
+        </ul>
+    </div>
+
+    <div class="resultDisp">
+        <div class="imgCardCont">
+            <img class="birdImg" src="assets/img/example_bird.jpg">
+            <div class="butCont darkGreenBkg">
+                <button><img src="assets/icons/add_white.svg" alt=""></button>
+                <button><img src="assets/icons/check_white.svg" alt=""></button>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

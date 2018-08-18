@@ -18,7 +18,7 @@
                 <option value="bird bodyFont">Birds</option>
                 <option value="loc bodyFont">Location</option>
             </select>
-            <input class="searchBar bodyFont" type="text">
+            <input class="searchBar bodyFont" type="text" id="searchBar" onKeyDown="getSearch()">
             <button class="gpsBut" id="gpsBut" onclick="getLocation()"><img class="whiteFill" src="assets/icons/gps.svg" alt=""></button>
         </div>
     </header>
@@ -27,16 +27,16 @@
     <div class="menuDisp greenBkg">
         <ul class="menu">
             <li class="menuItem"><label for="menuToggle">Close Menu</label></li>
-            <li class="menuItem">List 1</li>
-            <li class="menuItem">List 2</li>
+            <li class="menuItem" onclick="getList(this.id)" id="wantedList">List 1</button></li>
+            <li class="menuItem" onclick="getList(this.id)" id="seenList">List 2</li>
             <li class="menuItem">List 3</li>
             <li class="menuItem">+ Add List</li>
-            <li class="menuItem">Logout</li>
+            <li class="menuItem" onclick="logout()">Logout</li>
         </ul>
     </div>
     
     <div class="resultDisp">
-        <div class="resultItem whiteBkg">
+        <div class="resultItem whiteBkg" name="birdName1" onclick="getBird(this.attributes)">
             <div class="birdImg"></div>
             <span>Birb Example</span>
             <div class="butCont">
@@ -44,7 +44,7 @@
                 <button><img src="assets/icons/check.svg" alt=""></button>
             </div>
         </div>
-        <div class="resultItem whiteBkg">
+        <div class="resultItem whiteBkg" name="birdName2" onclick="getBird(this.attributes)">
             <div class="birdImg"></div>
             <span>Birb Example</span>
             <div class="butCont">
@@ -52,7 +52,7 @@
                 <button><img src="assets/icons/check.svg" alt=""></button>
             </div>
         </div>
-        <div class="resultItem whiteBkg">
+        <div class="resultItem whiteBkg" name="birdName3" onclick="getBird(this.attributes)">
             <div class="birdImg"></div>
             <span>Birb Example</span>
             <div class="butCont">
@@ -60,7 +60,7 @@
                 <button><img src="assets/icons/check.svg" alt=""></button>
             </div>
         </div>
-        <div class="resultItem whiteBkg">
+        <div class="resultItem whiteBkg" name="birdName4" onclick="getBird(this.attributes)">
             <div class="birdImg"></div>
             <span>Birb Example</span>
             <div class="butCont">
@@ -68,7 +68,7 @@
                 <button><img src="assets/icons/check.svg" alt=""></button>
             </div>
         </div>
-        <div class="resultItem whiteBkg">
+        <div class="resultItem whiteBkg" name="birdName5" onclick="getBird(this.attributes)">
             <div class="birdImg"></div>
             <span>Birb Example</span>
             <div class="butCont">
@@ -76,7 +76,7 @@
                 <button><img src="assets/icons/check.svg" alt=""></button>
             </div>
         </div>
-        <div class="resultItem whiteBkg">
+        <div class="resultItem whiteBkg" name="birdName6" onclick="getBird(this.attributes)">
             <div class="birdImg"></div>
             <span>Birb Example</span>
             <div class="butCont">
@@ -84,7 +84,7 @@
                 <button><img src="assets/icons/check.svg" alt=""></button>
             </div>
         </div>
-        <div class="resultItem whiteBkg">
+        <div class="resultItem whiteBkg" name="birdName7" onclick="getBird(this.attributes)">
             <div class="birdImg"></div>
             <span>Birb Example</span>
             <div class="butCont">
@@ -92,7 +92,7 @@
                 <button><img src="assets/icons/check.svg" alt=""></button>
             </div>
         </div>
-        <div class="resultItem whiteBkg">
+        <div class="resultItem whiteBkg" name="birdName8" onclick="getBird(this.attributes)">
             <div class="birdImg"></div>
             <span>Birb Example</span>
             <div class="butCont">
@@ -100,7 +100,7 @@
                 <button><img src="assets/icons/check.svg" alt=""></button>
             </div>
         </div>
-        <div class="resultItem whiteBkg">
+        <div class="resultItem whiteBkg" name="birdName9" onclick="getBird(this.attributes)">
             <div class="birdImg"></div>
             <span>Birb Example</span>
             <div class="butCont">
@@ -108,7 +108,7 @@
                 <button><img src="assets/icons/check.svg" alt=""></button>
             </div>
         </div>
-        <div class="resultItem whiteBkg">
+        <div class="resultItem whiteBkg" name="birdName10" onclick="getBird(this.attributes)">
             <div class="birdImg"></div>
             <span>Birb Example</span>
             <div class="butCont">
@@ -116,7 +116,7 @@
                 <button><img src="assets/icons/check.svg" alt=""></button>
             </div>
         </div>
-        <div class="resultItem whiteBkg">
+        <div class="resultItem whiteBkg" name="birdName11" onclick="getBird(this.attributes)">
             <div class="birdImg"></div>
             <span>Birb Example</span>
             <div class="butCont">
@@ -124,7 +124,7 @@
                 <button><img src="assets/icons/check.svg" alt=""></button>
             </div>
         </div>
-        <div class="resultItem whiteBkg">
+        <div class="resultItem whiteBkg" name="birdName12" onclick="getBird(this.attributes)">
             <div class="birdImg"></div>
             <span>Birb Example</span>
             <div class="butCont">
@@ -132,7 +132,7 @@
                 <button><img src="assets/icons/check.svg" alt=""></button>
             </div>
         </div>
-        <div class="resultItem whiteBkg">
+        <div class="resultItem whiteBkg" name="birdName13" onclick="getBird(this.attributes)">
             <div class="birdImg"></div>
             <span>Birb Example</span>
             <div class="butCont">
@@ -140,7 +140,7 @@
                 <button><img src="assets/icons/check.svg" alt=""></button>
             </div>
         </div>
-        <div class="resultItem whiteBkg">
+        <div class="resultItem whiteBkg" name="birdName14" onclick="getBird(this.attributes)">
             <div class="birdImg"></div>
             <span>Birb Example</span>
             <div class="butCont">
@@ -148,7 +148,7 @@
                 <button><img src="assets/icons/check.svg" alt=""></button>
             </div>
         </div>
-        <div class="resultItem whiteBkg">
+        <div class="resultItem whiteBkg" name="birdName15" onclick="getBird(this.attributes)">
             <div class="birdImg"></div>
             <span>Birb Example</span>
             <div class="butCont">
@@ -156,7 +156,7 @@
                 <button><img src="assets/icons/check.svg" alt=""></button>
             </div>
         </div>
-        <div class="resultItem whiteBkg">
+        <div class="resultItem whiteBkg" name="birdName16" onclick="getBird(this.attributes)">
             <div class="birdImg"></div>
             <span>Birb Example</span>
             <div class="butCont">

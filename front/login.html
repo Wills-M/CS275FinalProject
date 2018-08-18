@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login - bird.watch</title>
+    <script type="text/JavaScript" src="login.js"></script>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/login.css">
 </head>
@@ -12,9 +13,9 @@
     <img class="logo img" src="assets/img/logo.png" alt="bird.watch logo">
     <h1 class="headFont"><span class="red">b</span>ir<span class="red">d</span>.watch</h1>
     <div class="inputContainer">
-        <input class="username" placeholder="username" type="text">
-        <input class="password" placeholder="password" type="password">
-        <button class="submit white headFont">Submit</button>
+        <input class="username" placeholder="username" type="text" id="username">
+        <input class="password" placeholder="password" type="password" id="password">
+        <button class="submit white headFont" onclick="login()">Submit</button>
     </div>
 </body>
 </html>

@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Search - bird.watch</title>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/JavaScript" src="search.js"></script>
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/search.css">
 </head>
@@ -18,7 +19,7 @@
                 <option value="loc bodyFont">Location</option>
             </select>
             <input class="searchBar bodyFont" type="text">
-            <button class="gpsBut"><img class="whiteFill" src="assets/icons/gps.svg" alt=""></button>
+            <button class="gpsBut" id="gpsBut" onclick="getLocation()"><img class="whiteFill" src="assets/icons/gps.svg" alt=""></button>
         </div>
     </header>
 

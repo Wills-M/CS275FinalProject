@@ -3,7 +3,7 @@ function login() {
 	var password = document.getElementById("password").value;
 
 	//Create URL to home page
-	var URL = "http://localhost:8080/login?username=" + username + "&password=" + password;	
+	var URL = "http://localhost:8080/login?username=" + username + "&password=" + password;
 
 	//Construct AJAX request to localhost
 	$.ajax({
@@ -19,7 +19,7 @@ function login() {
 			}
 		},
 		error: function(xhr, ajaxOptions, thrownError){
-			alert("Error!");
+			alert("Error connecting to localhost!");
 		}
 	});	
 }

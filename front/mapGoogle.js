@@ -1,7 +1,26 @@
+var map;
+
+function getLoc() {
+    if( navigator.geolocation ) {
+        navigator.geolocation.getCurrentPosition( getLatLong );
+    }
+    else {
+        alert( "No Geolocation functionality" );
+    }
+}
+
+function getLatLong( position ) {
+    var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+    };
+    map.setCenter( pos );
+}
+
 function myMap() {
     var mapCanvas = document.getElementsByClassName("map")[0];
     var mapOptions = {
-        center: new google.maps.LatLng(51.5, -0.2), zoom: 10
+        center: new google.maps.LatLng(10, 10), zoom: 10
     };
-    var map = new google.maps.Map(mapCanvas, mapOptions);
+    map = new google.maps.Map(mapCanvas, mapOptions);
 }

@@ -14,7 +14,7 @@ function login() {
 		success: function(msg){
 			if (msg.authentication == "passed") {
 				window.location.href = "search.html";
-			} else {
+			} else if (msg.authentication == "failed") {
 				alert("Incorrect username or password!");
 			}
 		},

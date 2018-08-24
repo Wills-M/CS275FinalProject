@@ -1,6 +1,10 @@
 .birdImg {
     width: 100%;
-    border-radius: 10px;
+
+    position: relative;
+    z-index: 20;
+
+    box-shadow: 0px 5px 5px rgba( 0, 0, 0, .25 );
 }
 
 .butCont {
@@ -8,8 +12,34 @@
     display: flex;
     justify-content: space-around;
     align-content: center;
+    align-items: center;
     height: 3rem;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    /* padding-top: 20px; */
+    /* padding-bottom: 20px; */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    position: relative;
+    top: -10px;
+    z-index: 10;
+}
+
+.butCont button {
+    height: 24px;
+    position: relative;
+    top: 5px;
+}
+
+.descriptDisp {
+    padding: 15px;
+}
+
+.descriptDisp h1 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.descriptDisp h2, p {
+    margin-bottom: 10px;
 }
 

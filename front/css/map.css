@@ -1,0 +1,6 @@
+.map {
+    height: 50vh;
+    min-height: 150px;
+    width: 100%;
+    background: blue;
+}

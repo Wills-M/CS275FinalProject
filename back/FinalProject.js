@@ -2,7 +2,7 @@ var express = require('express');
 var mysql = require('mysql'); 
 var app = express(); 
 var readline = require('readline-sync');
-app.use(express.static(".")); 
+app.use(express.static("../")); 
 
 var user = readline.question("What is the username?");
 var pass = readline.question("What is the password?");

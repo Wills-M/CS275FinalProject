@@ -6,6 +6,7 @@ app.use(express.static("../"));
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
+var request = require('request'); 
 
 var user = readline.question("What is the username?");
 var pass = readline.question("What is the password?");
@@ -43,7 +44,7 @@ app.get('/search', function(req, res) {//When the user enters a bird in the sear
 app.get('/bird', function(req, res) {//The description page for a bird
 	console.log('user accessed bird descript'); 
 
-	con.query('SELECT commonName, birdPic FROM bird WHERE commonName =\'' + req.query.bird + '\';', function (err, result, fields) {
+	con.query('SELECT commonName, birdPic, description FROM bird WHERE commonName =\'' + req.query.bird + '\';', function (err, result, fields) {
 		if (err)
 			console.log("Error gettting table");
 		else{

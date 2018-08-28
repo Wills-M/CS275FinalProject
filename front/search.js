@@ -148,7 +148,7 @@ function getList(id) {
 function getBird(attributes) {
 	//Create URL to localhost list page
 	var URL = "http://localhost:8080/bird?name=" + attributes.name.value;
-	
+
 	//Construct AJAX request to localhost
 	$.ajax({
 		type: "GET",
@@ -168,7 +168,11 @@ function getBird(attributes) {
 function toAddList(attributes) {
 	alert("To Add List " + attributes.name.value);
 	//Create URL to localhost to add to add list
-	var URL = "http://localhost:8080/add?username=dummy&name=" + attributes.name.value;
+	
+	var username = readCookie( "username" );
+	// console.log( "Username: " + username );
+	
+	var URL = "http://localhost:8080/add?username=" + username + "&name=" + attributes.name.value;
 	//Construct AJAX request to localhost
 	$.ajax({
 		type: "GET",
@@ -202,4 +206,11 @@ function toCheckList(attributes) {
 			alert("Error connecting to localhost!" + attributes.name.value);
 		}
 	});
+}
+
+//parses cookie string and returns value of chosen field
+function readCookie(name) {
+	var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+	if (match) 
+	  return match[2];
 }

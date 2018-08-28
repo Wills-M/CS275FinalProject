@@ -13,7 +13,8 @@ function login() {
 		dataType: "json",
 		success: function(msg){
 			if (msg.authentication == "passed") {
-				document.cookie = "username=" + username + "; path=/"
+				document.cookie = "username=" + username + "; path=/";
+				console.log(document.cookie);
 				window.location.href = "search.html";
 			} else if (msg.authentication == "failed") {
 				alert("Incorrect username or password!");

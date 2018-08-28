@@ -95,6 +95,16 @@ app.get('/login', function(req, res) {
 	});
 }); 
 
+app.get('/initdb', function(req, res) {
+	var URL = 'https://ebird.org/ws1.1/ref/taxa/ebird?cat=species&fmt=json&locale=en_US';
+
+	request(URL, function(error, response, body){
+		body.forEach((bird, index) => {
+			Console.log(bird);
+		})
+	});
+});
+
 var server = app.listen(8080, function() {// notifies in the command prompt that the server is running
 	console.log('Server started on port ' + server.address().port)
 }); 

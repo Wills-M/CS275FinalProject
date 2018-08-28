@@ -2,7 +2,10 @@ var express = require('express');
 var mysql = require('mysql'); 
 var app = express(); 
 var readline = require('readline-sync');
-app.use(express.static("../")); 
+app.use(express.static(".")); 
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:false}));
 
 var user = readline.question("What is the username?");
 var pass = readline.question("What is the password?");
@@ -27,21 +30,56 @@ app.get('/', function(req, res) {
 app.get('/search', function(req, res) {//When the user enters a bird in the search bar
 	console.log('user accessed search, redirecting...'); 
 	res.redirect('../front/search.html'); 
+	
+		con.query('SELECT commonName, birdPic, description FROM bird WHERE birdID =\'' + req.query.birdID + '\';', function (err, result, fields) {
+		if (err)
+			console.log("Error gettting table");
+		else{
+			//console.log(JSON.parse(result));
+			console.log(result);
+		}
+	});
 }); 
 
 app.get('/bird', function(req, res) {//The description page for a bird
 	console.log('user accessed bird descript'); 
-	
+
+	con.query('SELECT commonName, birdPic FROM bird WHERE birdID =\'' + req.query.birdID + '\';', function (err, result, fields) {
+		if (err)
+			console.log("Error gettting table");
+		else{
+			//console.log(JSON.parse(result));
+			console.log(result);
+		}
+	});
 	//temporary redirect, implement proper params and databse stuff here!
-	res.redirect('../front/bird.html'); 
+	//res.redirect('../front/bird.html'); 
 }); 
 
 app.get('/map', function(req, res) {//The Google Map feature showing the birds in the area
 	console.log('user accessing map'); 
+	
+	//Where will the latitude and longitude be stored?
+		con.query('SELECT commonName, birdPic FROM bird WHERE birdID =\'' + req.query.birdID + '\';', function (err, result, fields) {
+		if (err)
+			console.log("Error gettting table");
+		else{
+			//console.log(JSON.parse(result));
+			console.log(result);
+		}
+	});
 }); 
 
 app.get('/list', function(req, res) {//When the users select a list, this will show the list of birds
 	console.log('user accessing list'); 
+		con.query('SELECT commonName, birdPic, description FROM bird WHERE birdID =\'' + req.query.birdID + '\';', function (err, result, fields) {
+		if (err)
+			console.log("Error gettting table");
+		else{
+			//console.log(JSON.parse(result));
+			console.log(result);
+		}
+	});
 }); 
 
 app.get('/login', function(req, res) {

@@ -2,7 +2,7 @@
 function getSearch() {
 	var searchItem = document.getElementById("searchBar").value;
 	//On Enter press
-	if (event.keyCode == 13) {
+	//if (event.keyCode == 13) {
 		//Create URL to localhost search page
 		var URL = "http://localhost:8080/search?name=" + searchItem;
 		alert(URL);
@@ -66,7 +66,7 @@ function getSearch() {
 				alert("Error connecting to localhost!");
 			}
 		});
-	}
+	//}
 }
 
 //Handle Locate button onclick and get location using geolocation api

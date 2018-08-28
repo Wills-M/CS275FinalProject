@@ -20,13 +20,11 @@
             <img class="whiteFill" src="assets/icons/menu.svg" alt="menu button">
         </label>
         <div class="searchCont">
-            <input class="searchBar bodyFont" type="text">
-            <button class="gpsBut searchBut">
+            <input class="searchBar bodyFont" type="text" id="searchBar">
+            <button class="gpsBut searchBut" onclick="getSearch()">
                 <img src="assets/icons/round-arrow_forward-24px.svg" alt="">
             </button>
-            <button class="gpsBut">
-                <img class="whiteFill" src="assets/icons/gps.svg" alt="">
-            </button>
+            <button class="gpsBut" id="gpsBut" onclick="getLocation()"><img class="whiteFill" src="assets/icons/gps.svg" alt=""></button>
         </div>
     </header>
 

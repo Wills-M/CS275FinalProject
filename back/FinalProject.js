@@ -2,7 +2,7 @@ var express = require('express');
 var mysql = require('mysql'); 
 var app = express(); 
 var readline = require('readline-sync');
-app.use(express.static(".")); 
+app.use(express.static("..")); 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
@@ -29,7 +29,7 @@ app.get('/', function(req, res) {
 
 app.get('/search', function(req, res) {//When the user enters a bird in the search bar
 	console.log('user accessed search, redirecting...'); 
-	res.redirect('../front/search.html'); 
+	res.redirect('../front/search.html');
 	
 		con.query('SELECT commonName, birdPic, description FROM bird WHERE birdID =\'' + req.query.birdID + '\';', function (err, result, fields) {
 		if (err)

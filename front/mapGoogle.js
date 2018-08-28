@@ -24,3 +24,5 @@ function myMap() {
     };
     map = new google.maps.Map(mapCanvas, mapOptions);
 }
+
+getLoc();

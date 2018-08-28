@@ -31,9 +31,12 @@ function getSearch() {
 	 //                <button name="` + jsonObj.birds[i].name + `" onclick="toAddList(this.attributes)"><img src="assets/icons/add.svg" alt=""></button>
 	 //                <button name="` + jsonObj.birds[i].name + `" onclick="toCheckList(this.attributes)"><img src="assets/icons/check.svg" alt=""></button>
 	 //            </div>
-  //      	 	</div>`
+  //      	 	</div>`;
 		// }
 		// document.getElementsByClassName("resultDisp")[0].innerHTML = html_str;
+		// for (i = 0; i < jsonObj.birds.length; i++) {
+		// 	document.getElementsByClassName("birdImg")[i].style.backgroundImage = "url('" + jsonObj.birds[i].imageURL + "')";
+		// }
 
 		//Construct AJAX request to localhost
 		$.ajax({
@@ -44,7 +47,6 @@ function getSearch() {
 			success: function(msg){
 				var html_str = "";
 				for (i = 0; i < msg.birds.length; i++) {
-					alert(i);
 					html_str += `
 					<div class="resultItem whiteBkg">
 			            <div class="birdImg" name="` + msg.birds[i].name + `" onclick="getBird(this.attributes)"></div>
@@ -56,6 +58,9 @@ function getSearch() {
 		       	 	</div>`
 				}
 				document.getElementsByClassName("resultDisp")[0].innerHTML = html_str;
+				for (i = 0; i < msg.birds.length; i++) {
+					document.getElementsByClassName("birdImg")[i].style.backgroundImage = "url('" + msg.birds[i].imageURL + "')";
+				}
 			},
 			error: function(xhr, ajaxOptions, thrownError){
 				alert("Error connecting to localhost!");
@@ -66,11 +71,12 @@ function getSearch() {
 
 //Handle Locate button onclick and get location using geolocation api
 function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(sendLocation);
-    } else { 
-        alert("Geolocation is not supported by this browser.");
-    }
+	window.location.href = "map.html";
+    // if (navigator.geolocation) {
+    //     navigator.geolocation.getCurrentPosition(sendLocation);
+    // } else { 
+    //     alert("Geolocation is not supported by this browser.");
+    // }
 }
 
 //Send location (latitude, longtitude) to server and redirect to map page
@@ -80,7 +86,6 @@ function sendLocation(position) {
 
     //Create URL to localhost map page
 	var URL = "http://localhost:8080/map?lat=" + latitude + "&long=" + latitude;
-	alert(URL);
 	
 	//Construct AJAX request to localhost
 	$.ajax({
@@ -116,7 +121,22 @@ function getList(id) {
 		data: "{}",
 		dataType: "json",
 		success: function(msg){
-			alert("No error connecting to localhost!");
+			var html_str = "";
+			for (i = 0; i < msg.birds.length; i++) {
+				html_str += `
+				<div class="resultItem whiteBkg">
+		            <div class="birdImg" name="` + msg.birds[i].name + `" onclick="getBird(this.attributes)"></div>
+		            <span name="` + msg.birds[i].name + `" onclick="getBird(this.attributes)">` + msg.birds[i].name + `</span>
+		            <div class="butCont">
+		                <button name="` + msg.birds[i].name + `" onclick="toAddList(this.attributes)"><img src="assets/icons/add.svg" alt=""></button>
+		                <button name="` + msg.birds[i].name + `" onclick="toCheckList(this.attributes)"><img src="assets/icons/check.svg" alt=""></button>
+		            </div>
+	       	 	</div>`
+			}
+			document.getElementsByClassName("resultDisp")[0].innerHTML = html_str;
+			for (i = 0; i < msg.birds.length; i++) {
+				document.getElementsByClassName("birdImg")[i].style.backgroundImage = "url('" + msg.birds[i].imageURL + "')";
+			}
 		},
 		error: function(xhr, ajaxOptions, thrownError){
 			alert("Error connecting to localhost!");
@@ -148,7 +168,7 @@ function getBird(attributes) {
 function toAddList(attributes) {
 	alert("To Add List " + attributes.name.value);
 	//Create URL to localhost to add to add list
-	var URL = "http://localhost:8080/add?name=" + attributes.name.value;
+	var URL = "http://localhost:8080/add?username=dummy&name=" + attributes.name.value;
 	//Construct AJAX request to localhost
 	$.ajax({
 		type: "GET",
@@ -168,7 +188,7 @@ function toAddList(attributes) {
 function toCheckList(attributes) {
 	alert("To Check List " + attributes.name.value);
 	//Create URL to localhost to add to check list
-	var URL = "http://localhost:8080/check?name=" + attributes.name.value;
+	var URL = "http://localhost:8080/check?username=dummy&name=" + attributes.name.value;
 	//Construct AJAX request to localhost
 	$.ajax({
 		type: "GET",

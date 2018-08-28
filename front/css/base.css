@@ -72,9 +72,7 @@ header {
 
 .searchBar {
     display: inline;
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 0;
-    padding-right: 30px;
+    text-indent: 1rem;
     /* width: 100%; */
 }
 
@@ -101,6 +99,10 @@ header {
 
     top: 50%;
     transform: translateY(-45%);
+}
+
+.searchBut {
+    right: 2rem;
 }
 
 .resultDisp {

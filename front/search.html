@@ -15,11 +15,10 @@
     <header class="darkGreenBkg">
         <label class="menuBut" for="menuToggle"><img class="whiteFill" src="assets/icons/menu.svg" alt="menu button"></label>
         <div class="searchCont">
-            <select class="searchOpt whiteBkg bodyFont">
-                <option value="bird bodyFont">Birds</option>
-                <option value="loc bodyFont">Location</option>
-            </select>
             <input class="searchBar bodyFont" type="text" id="searchBar" onKeyDown="getSearch()">
+            <button class="gpsBut searchBut">
+                <img src="assets/icons/round-arrow_forward-24px.svg" alt="">
+            </button>
             <button class="gpsBut" id="gpsBut" onclick="getLocation()"><img class="whiteFill" src="assets/icons/gps.svg" alt=""></button>
         </div>
     </header>

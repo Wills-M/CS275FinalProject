@@ -20,7 +20,7 @@ function getLatLong( position ) {
 function myMap() {
     var mapCanvas = document.getElementsByClassName("map")[0];
     var mapOptions = {
-        center: new google.maps.LatLng(10, 10), zoom: 10
+        center: new google.maps.LatLng(10, 10), zoom: 13
     };
     map = new google.maps.Map(mapCanvas, mapOptions);
 }

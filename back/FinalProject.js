@@ -32,7 +32,7 @@ app.get('/search', function(req, res) {//When the user enters a bird in the sear
 	console.log('user accessed search, redirecting...'); 
 	//res.redirect('../front/search.html'); 
 	
-		con.query('SELECT commonName, birdPic, description FROM bird WHERE commonName LIKE \'%' + req.query.bird + '%\';', function (err, result, fields) {
+		con.query('SELECT commonName, birdPic, description FROM bird WHERE commonName LIKE \'%' + req.query.name + '%\';', function (err, result, fields) {
 		if (err)
 			console.log("Error gettting table");
 		else{
@@ -44,7 +44,7 @@ app.get('/search', function(req, res) {//When the user enters a bird in the sear
 app.get('/bird', function(req, res) {//The description page for a bird
 	console.log('user accessed bird descript'); 
 
-	con.query('SELECT commonName, birdPic, description FROM bird WHERE commonName =\'' + req.query.bird + '\';', function (err, result, fields) {
+	con.query('SELECT commonName, birdPic, description FROM bird WHERE commonName =\'' + req.query.name + '\';', function (err, result, fields) {
 		if (err)
 			console.log("Error gettting table");
 		else{
@@ -59,7 +59,7 @@ app.get('/map', function(req, res) {//The Google Map feature showing the birds i
 	console.log('user accessing map'); 
 	
 	//Where will the latitude and longitude be stored?
-		con.query('SELECT commonName, birdPic FROM bird WHERE commonName =\'' + req.query.bird + '\';', function (err, result, fields) {
+		con.query('SELECT commonName, birdPic FROM bird WHERE commonName =\'' + req.query.name + '\';', function (err, result, fields) {
 		if (err)
 			console.log("Error gettting table");
 		else{
@@ -70,7 +70,7 @@ app.get('/map', function(req, res) {//The Google Map feature showing the birds i
 
 app.get('/list', function(req, res) {//When the users select a list, this will show the list of birds
 	console.log('user accessing list'); 
-		con.query('SELECT commonName, birdPic, description FROM bird WHERE commonName =\'' + req.query.bird + '\';', function (err, result, fields) {
+		con.query('SELECT commonName, birdPic, description FROM bird WHERE commonName =\'' + req.query.name + '\';', function (err, result, fields) {
 		if (err)
 			console.log("Error gettting table");
 		else{

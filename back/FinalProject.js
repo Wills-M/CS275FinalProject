@@ -99,9 +99,15 @@ app.get('/initdb', function(req, res) {
 	var URL = 'https://ebird.org/ws1.1/ref/taxa/ebird?cat=species&fmt=json&locale=en_US';
 
 	request(URL, function(error, response, body){
-		body.forEach((bird, index) => {
-			Console.log(bird);
-		})
+		var json = JSON.parse(body);
+		json.forEach((bird, index) => {
+			
+			var sql = "INSERT INTO bird (commonName, scientificName) VALUES ('" + bird.sciName + "', '" + bird.comName.replace('"', '').replace(/'/g, "\\'") + "')";
+  			con.query(sql, function (err, result) {
+    			if (err) throw err;
+    		console.log(bird.comName + " inserted.");
+  			});
+		});
 	});
 });
 

@@ -44,7 +44,7 @@ app.get('/search', function(req, res) {//When the user enters a bird in the sear
 app.get('/bird', function(req, res) {//The description page for a bird
 	console.log('user accessed bird descript'); 
 
-	con.query('SELECT commonName, birdPic, description FROM bird WHERE commonName =\'' + req.query.name + '\';', function (err, result, fields) {
+	con.query('SELECT commonName, scientificName, birdPic, description FROM bird WHERE commonName =\'' + req.query.name + '\';', function (err, result, fields) {
 		if (err)
 			console.log("Error gettting table");
 		else{
@@ -57,15 +57,15 @@ app.get('/bird', function(req, res) {//The description page for a bird
 
 app.get('/map', function(req, res) {//The Google Map feature showing the birds in the area
 	console.log('user accessing map'); 
+	var URL = "http://ebird.org/ws1.1/data/notable/geo/recent?lng="
+	URL += req.query.lng + "&lat=" + req.query.lat + "&fmt=json&locale=en_US";
 	
-	//Where will the latitude and longitude be stored?
-		con.query('SELECT commonName, birdPic FROM bird WHERE commonName =\'' + req.query.name + '\';', function (err, result, fields) {
-		if (err)
-			console.log("Error gettting table");
-		else{
-			res.send(result[0]);
-		}
-	});
+	request(URL, function(error, response, body){
+		var json = JSON.parse(body);
+		
+		res.send(json);
+		
+	});	
 }); 
 
 app.get('/list', function(req, res) {//When the users select a list, this will show the list of birds

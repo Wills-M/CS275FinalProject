@@ -19,8 +19,9 @@ function getLatLong(position) {
     };
     map.setCenter(pos);
 
-    var URL = 'http://localhost:8080/map?lat=' + pos.lat + "?long=" + pos.lng;
+    var URL = 'http://localhost:8080/map?lat=' + pos.lat + "&lng=" + pos.lng;
     console.log("GET request: " + URL);
+    alert(URL);
     $.ajax({
         type: 'GET',
         url: URL,

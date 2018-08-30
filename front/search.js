@@ -166,14 +166,16 @@ function getBird(attributes) {
 		type: "GET",
 		url: URL,
 		data: "{}",
-		dataType: "json",
+		dataType: "html",
 		success: function(msg){
 			alert("No error connecting to localhost!");
 		},
 		error: function(xhr, ajaxOptions, thrownError){
 			alert("Error connecting to localhost!" + attributes.name.value);
+			alert(URL);
 		}
 	});
+	window.location.href = URL;
 }
 
 //Handle Add button on Search page

@@ -100,13 +100,15 @@ app.get('/initdb', function(req, res) {
 
 	request(URL, function(error, response, body){
 		var json = JSON.parse(body);
+		var sql = "INSERT INTO bird (commonName, scientificName) VALUES ";
 		json.forEach((bird, index) => {
-			
-			var sql = "INSERT INTO bird (commonName, scientificName) VALUES ('" + bird.comName.replace('"', '').replace(/'/g, "\\'") + "', '" + bird.sciName + "')";
-  			con.query(sql, function (err, result) {
-    			if (err) throw err;
-    		console.log(bird.comName + " inserted.");
-  			});
+			sql += "('" + bird.comName.replace('"', '').replace(/'/g, "\\'") + "', '" + bird.sciName + "'),";
+		});
+		//sql.replace(/.$/, ";");
+		sql = sql.substr(0, sql.length - 1) + ";";
+		console.log(sql);
+		con.query(sql, function (err, result) {
+			if (err) throw err;
 		});
 	});
 });

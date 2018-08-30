@@ -103,9 +103,7 @@ app.get('/bird', function(req, res) {//The description page for a bird
 			        <div class="descriptDisp roundCorners whiteBkg bodyFont">
 			            <h1 class="headFont">` + result[0].commonName + `</h1>
 			            <h2 class="italics gray">Lamprotornis purpureus</h2>
-			            <p>The purple starling (Lamprotornis purpureus), also known as the purple glossy starling, is a member of the starling family of birds.</p>
-			            <p>It is a resident breeder in tropical Africa from Senegal and north Zaire east to Sudan and west Kenya. This common passerine is typically found in open woodland and cultivation.</p>
-
+			            <p>` + result[0].description + `</p>
 			        </div>
 			    </div>
 			</body>

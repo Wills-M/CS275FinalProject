@@ -102,7 +102,7 @@ app.get('/bird', function(req, res) {//The description page for a bird
 			        </div>
 			        <div class="descriptDisp roundCorners whiteBkg bodyFont">
 			            <h1 class="headFont">` + result[0].commonName + `</h1>
-			            <h2 class="italics gray">Lamprotornis purpureus</h2>
+			            <h2 class="italics gray">` + result[0].scientificName + `</h2>
 			            <p>` + result[0].description + `</p>
 			        </div>
 			    </div>

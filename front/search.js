@@ -1,6 +1,6 @@
 //Handle search box and redirect to search result page
 function getSearch() {
-	var searchItem = document.getElementById("searchBar").value;
+	var searchItem = $( '#searchBar' ).val();
 	//On Enter press
 	//if (event.keyCode == 13) {
 		//Create URL to localhost search page
@@ -222,9 +222,28 @@ function toCheckList(attributes) {
 	});
 }
 
+//checks if we were redirected by another page to search for a bird
+function checkRedirect() {
+	var bird = readCookie( "birdSearch" );
+	alert( document.cookie );
+	alert( bird );
+	if ( bird != "" ) {
+		$( '#searchBar' ).val( bird );
+		alert( $( '#searchBar' ).val());
+		document.cookie = "birdSearch=; path=/";
+		getSearch();
+	}
+}
+
 //parses cookie string and returns value of chosen field
 function readCookie(name) {
 	var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
 	if (match) 
 	  return match[2];
+	
+	  return "";
 }
+
+$(document).ready(function () {
+	checkRedirect();
+});

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/map.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="mapGoogle.js"></script>
+    <script src="searchbar.js"></script>
 </head>
 <body>
     <header class="darkGreenBkg">
@@ -18,7 +19,7 @@
         </label>
         <div class="searchCont">
             <input class="searchBar bodyFont" type="text">
-            <button class="gpsBut searchBut">
+            <button class="gpsBut searchBut" onclick="searchBar()">
                 <img src="assets/icons/round-arrow_forward-24px.svg" alt="">
             </button>
             <button class="gpsBut" onclick="getLoc()">

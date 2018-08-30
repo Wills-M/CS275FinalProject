@@ -84,11 +84,6 @@ function getSearch() {
 //Handle Locate button onclick and get location using geolocation api
 function getLocation() {
 	window.location.href = "map.html";
-    // if (navigator.geolocation) {
-    //     navigator.geolocation.getCurrentPosition(sendLocation);
-    // } else { 
-    //     alert("Geolocation is not supported by this browser.");
-    // }
 }
 
 //Send location (latitude, longtitude) to server and redirect to map page

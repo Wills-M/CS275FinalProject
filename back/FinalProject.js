@@ -57,6 +57,7 @@ app.get('/bird', function(req, res) {//The description page for a bird
 			    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 			    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 			    <script type="text/JavaScript" src="bird.js"></script>
+			    <script type="text/JavaScript" src="http://localhost:8080/front/searchbar.js"></script>
 			    <title>bird.watch</title>
 
 			    <link rel="stylesheet" href="http://localhost:8080/front/css/normalize.css">
@@ -71,7 +72,7 @@ app.get('/bird', function(req, res) {//The description page for a bird
 			        </label>
 			        <div class="searchCont">
 			            <input class="searchBar bodyFont" type="text" id="searchBar">
-			            <button class="gpsBut searchBut" onclick="getSearch()">
+			            <button class="gpsBut searchBut" onclick="searchBar()">
 			                <img src="http://localhost:8080/front/assets/icons/round-arrow_forward-24px.svg" alt="">
 			            </button>
 			            <button class="gpsBut" id="gpsBut" onclick="getLocation()"><img class="whiteFill" src="http://localhost:8080/front/assets/icons/gps.svg" alt=""></button>

@@ -111,7 +111,7 @@ function sendLocation(position) {
 
 //Handle logout onclick
 function logout() {
-	window.location.href = "login.html";
+	window.location.href = "http://localhost:8080/front/login.html";
 }
 
 //Handle list option onclick in Menu panel and redirect to list page

@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 var request = require('request');
+var requestHandler = require('./requestHandler');
+var rH = new requestHandler.RequestHandler();
 
 var user = readline.question("What is the username?");
 var pass = readline.question("What is the password?");
@@ -17,6 +19,12 @@ var con = mysql.createConnection({
 	password: pass,
 	database: "birdwatch"
 })
+
+//Helper function
+function first(p) {
+	for (var i in p)
+		return p[i];
+}
 
 con.connect(function (err) {
 	if (err) throw err;
@@ -36,15 +44,11 @@ app.get('/search', function (req, res) {//When the user enters a bird in the sea
 		if (err)
 			console.log("Error gettting table");
 		else {
-			function first(p) {
-				for (var i in p)
-					return p[i];
-			}
 			result.forEach(function (bird, index) {
 				var URL = "https://en.wikipedia.org/w/api.php?action=query&redirects&titles=" + bird.scientificName.replace(" ", "_") + "&prop=pageimages&format=json&pithumbsize=500";
 				request(URL, function (error, response, body) {
 					var json = JSON.parse(body);
-					pages = json.query.pages;
+					var pages = json.query.pages;
 					if (first(pages) && first(pages).thumbnail) {
 						var sql = 'UPDATE bird SET birdPic = \'' + first(pages).thumbnail.source + '\' WHERE scientificName = \'' + bird.scientificName + '\'';
 						con.query(sql, function (err, result) {
@@ -65,68 +69,73 @@ app.get('/bird', function (req, res) {//The description page for a bird
 		if (err)
 			console.log("Error gettting table");
 		else {
-			var html_str = `
-			<!DOCTYPE html>
-			<html lang="en">
-			<head>
-			    <meta charset="UTF-8">
-			    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-			    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-			    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-			    <script type="text/JavaScript" src="http://localhost:8080/front/bird.js"></script>
-			    <script type="text/JavaScript" src="http://localhost:8080/front/searchbar.js"></script>
-			    <title>bird.watch</title>
+			rH.getDescription(result[0].description, result[0].scientificName.replace(" ", "_"));
+			rH.once('gotDesc', function(desc) {
+				//#region 
+				var html_str = `
+				<!DOCTYPE html>
+				<html lang="en">
+				<head>
+					<meta charset="UTF-8">
+					<meta name="viewport" content="width=device-width, initial-scale=1.0">
+					<meta http-equiv="X-UA-Compatible" content="ie=edge">
+					<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+					<script type="text/JavaScript" src="http://localhost:8080/front/bird.js"></script>
+					<script type="text/JavaScript" src="http://localhost:8080/front/searchbar.js"></script>
+					<title>bird.watch</title>
 
-			    <link rel="stylesheet" href="http://localhost:8080/front/css/normalize.css">
-			    <link rel="stylesheet" href="http://localhost:8080/front/css/base.css">
-			    <link rel="stylesheet" href="http://localhost:8080/front/css/bird.css">
-			</head>
+					<link rel="stylesheet" href="http://localhost:8080/front/css/normalize.css">
+					<link rel="stylesheet" href="http://localhost:8080/front/css/base.css">
+					<link rel="stylesheet" href="http://localhost:8080/front/css/bird.css">
+				</head>
 
-			<body>
-			    <header class="darkGreenBkg">
-			        <label class="menuBut" for="menuToggle">
-			            <img class="whiteFill" src="http://localhost:8080/front/assets/icons/menu.svg" alt="menu button">
-			        </label>
-			        <div class="searchCont">
-			            <input class="searchBar bodyFont" type="text" id="searchBar">
-			            <button class="gpsBut searchBut" onclick="searchBar()">
-			                <img src="http://localhost:8080/front/assets/icons/round-arrow_forward-24px.svg" alt="">
-			            </button>
-			            <button class="gpsBut" id="gpsBut" onclick="getLocation()"><img class="whiteFill" src="http://localhost:8080/front/assets/icons/gps.svg" alt=""></button>
-			        </div>
-			    </header>
+				<body>
+					<header class="darkGreenBkg">
+						<label class="menuBut" for="menuToggle">
+							<img class="whiteFill" src="http://localhost:8080/front/assets/icons/menu.svg" alt="menu button">
+						</label>
+						<div class="searchCont">
+							<input class="searchBar bodyFont" type="text" id="searchBar">
+							<button class="gpsBut searchBut" onclick="searchBar()">
+								<img src="http://localhost:8080/front/assets/icons/round-arrow_forward-24px.svg" alt="">
+							</button>
+							<button class="gpsBut" id="gpsBut" onclick="getLocation()"><img class="whiteFill" src="http://localhost:8080/front/assets/icons/gps.svg" alt=""></button>
+						</div>
+					</header>
 
-			    <input class="invisible" id="menuToggle" type="checkbox">
-			    <div class="menuDisp greenBkg">
-			        <ul class="menu">
-			            <li class="menuItem">
-			                <label for="menuToggle">Close Menu</label>
-			            </li>
-			            <li class="menuItem">List 1</li>
-			            <li class="menuItem">List 2</li>
-			            <li class="menuItem">List 3</li>
-			            <li class="menuItem">+ Add List</li>
-			            <li class="menuItem">Logout</li>
-			        </ul>
-			    </div>
+					<input class="invisible" id="menuToggle" type="checkbox">
+					<div class="menuDisp greenBkg">
+						<ul class="menu">
+							<li class="menuItem">
+								<label for="menuToggle">Close Menu</label>
+							</li>
+							<li class="menuItem">List 1</li>
+							<li class="menuItem">List 2</li>
+							<li class="menuItem">List 3</li>
+							<li class="menuItem">+ Add List</li>
+							<li class="menuItem">Logout</li>
+						</ul>
+					</div>
 
-			    <div class="resultDisp">
-			        <div class="imgCardCont roundCorners">
-			            <img class="birdImg roundCorners" src="` + result[0].birdPic + `">
-			            <div class="butCont darkGreenBkg">
-			                <button><img src="http://localhost:8080/front/assets/icons/add_white.svg" alt=""></button>
-			                <button><img src="http://localhost:8080/front/assets/icons/check_white.svg" alt=""></button>
-			            </div>
-			        </div>
-			        <div class="descriptDisp roundCorners whiteBkg bodyFont">
-			            <h1 class="headFont">` + result[0].commonName + `</h1>
-			            <h2 class="italics gray">` + result[0].scientificName + `</h2>
-			            <p>` + result[0].description + `</p>
-			        </div>
-			    </div>
-			</body>
-			</html>`;
-			res.send(html_str);
+					<div class="resultDisp">
+						<div class="imgCardCont roundCorners">
+							<img class="birdImg roundCorners" src="` + result[0].birdPic + `">
+							<div class="butCont darkGreenBkg">
+								<button><img src="http://localhost:8080/front/assets/icons/add_white.svg" alt=""></button>
+								<button><img src="http://localhost:8080/front/assets/icons/check_white.svg" alt=""></button>
+							</div>
+						</div>
+						<div class="descriptDisp roundCorners whiteBkg bodyFont">
+							<h1 class="headFont">` + result[0].commonName + `</h1>
+							<h2 class="italics gray">` + result[0].scientificName + `</h2>
+							<p>` + desc + `</p>
+						</div>
+					</div>
+				</body>
+				</html>`;
+				//#endregion
+				res.send(html_str);
+			})
 			console.log("Getting result");
 		}
 	});
@@ -183,7 +192,6 @@ app.get('/initdb', function (req, res) {
 		});
 		//sql.replace(/.$/, ";");
 		sql = sql.substr(0, sql.length - 1) + ";";
-		console.log(sql);
 		con.query(sql, function (err, result) {
 			if (err) throw err;
 		});

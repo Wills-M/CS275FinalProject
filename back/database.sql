@@ -52,11 +52,12 @@ DROP TABLE IF EXISTS `list`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `list` (
-  `listID` int(11) NOT NULL AUTO_INCREMENT,
+  `listID` int(11) NOT NULL,
   `listElement` int(11) NOT NULL,
   `listElementRank` int(11) DEFAULT NULL,
-  PRIMARY KEY (`listID`),
   KEY `birdID_idx` (`listElement`),
+  UNIQUE INDEX `listunique` (`listID` ASC, `listElement` ASC, `listElementRank` ASC) VISIBLE,
+  UNIQUE INDEX `listunique2` (`listID` ASC, `listElementRank` ASC) VISIBLE,
   CONSTRAINT `fkBirdIDListElement` FOREIGN KEY (`listElement`) REFERENCES `bird` (`birdid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

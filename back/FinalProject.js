@@ -158,11 +158,16 @@ app.get('/map', function (req, res) {//The Google Map feature showing the birds 
 
 app.get('/list', function (req, res) {//When the users select a list, this will show the list of birds
 	console.log('user accessing list');
-	con.query('SELECT commonName, birdPic, description FROM bird WHERE commonName =\'' + req.query.name + '\';', function (err, result, fields) {
+	con.query('select b.* from user as u ' +
+	'join userlistxref as x on u.userID = x.userID ' +
+	'join list as l on x.listID = l.listID ' +
+	'join bird as b on l.listElement = b.birdID ' +
+	'where u.userName = "' + req.query.username + '";',
+	function (err, result, fields) {
 		if (err)
 			console.log("Error gettting table");
 		else {
-			res.send(result[0]);
+			res.send(result);
 		}
 	});
 });

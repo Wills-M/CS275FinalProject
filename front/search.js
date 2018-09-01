@@ -119,7 +119,7 @@ function getList(id) {
 	var listID = id;
 
 	//Create URL to localhost list page
-	var URL = "http://localhost:8080/list?id=" + listID;
+	var URL = "http://localhost:8080/list?username=" + readCookie( "username" );
 	
 	//Construct AJAX request to localhost
 	$.ajax({
@@ -129,20 +129,20 @@ function getList(id) {
 		dataType: "json",
 		success: function(msg){
 			var html_str = "";
-			for (i = 0; i < msg.birds.length; i++) {
+			for (i = 0; i < msg.length; i++) {
 				html_str += `
 				<div class="resultItem whiteBkg">
-		            <div class="birdImg" name="` + msg.birds[i].name + `" onclick="getBird(this.attributes)"></div>
-		            <span name="` + msg.birds[i].name + `" onclick="getBird(this.attributes)">` + msg.birds[i].name + `</span>
+		            <div class="birdImg" name="` + msg[i].commonName + `" onclick="getBird(this.attributes)"></div>
+		            <span name="` + msg[i].commonName + `" onclick="getBird(this.attributes)">` + msg[i].commonName + `</span>
 		            <div class="butCont">
-		                <button name="` + msg.birds[i].name + `" onclick="toAddList(this.attributes)"><img src="assets/icons/add.svg" alt=""></button>
-		                <button name="` + msg.birds[i].name + `" onclick="toCheckList(this.attributes)"><img src="assets/icons/check.svg" alt=""></button>
+		                <button name="` + msg[i].commonName + `" onclick="toAddList(this.attributes)"><img src="assets/icons/add.svg" alt=""></button>
+		                <button name="` + msg[i].commonName + `" onclick="toCheckList(this.attributes)"><img src="assets/icons/check.svg" alt=""></button>
 		            </div>
 	       	 	</div>`
 			}
 			document.getElementsByClassName("resultDisp")[0].innerHTML = html_str;
-			for (i = 0; i < msg.birds.length; i++) {
-				document.getElementsByClassName("birdImg")[i].style.backgroundImage = "url('" + msg.birds[i].imageURL + "')";
+			for (i = 0; i < msg.length; i++) {
+				document.getElementsByClassName("birdImg")[i].style.backgroundImage = "url('" + msg[i].birdPic + "')";
 			}
 		},
 		error: function(xhr, ajaxOptions, thrownError){

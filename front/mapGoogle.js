@@ -18,6 +18,7 @@ function getLatLong(position) {
         lng: position.coords.longitude
     };
     map.setCenter(pos);
+    
 
     var URL = 'http://localhost:8080/map?lat=' + pos.lat + "&lng=" + pos.lng;
     console.log("GET request: " + URL);
@@ -31,8 +32,9 @@ function getLatLong(position) {
             console.log( 'length: ' + msg.length );
             console.log( JSON.stringify( msg ));
             var html_str = "";
+            
             // var image = 'http://localhost:8080/front/assets/icons/logo.png';
-			for (i = 0; i < 50; i++) {
+			for (i = 0; i < msg.length; i++) {
 				html_str += `
 				<div class="resultItem whiteBkg">
 		            <div class="birdImg" name="` + msg[i].comName + `" onclick="getBird(this.attributes)"></div>
@@ -45,11 +47,21 @@ function getLatLong(position) {
                 
                 //adds a map marker for the bird
                 var latlng = { lat: msg[i].lat, lng: msg[i].lng };
+                var bName = msg[i].comName;
                 var marker = new google.maps.Marker({
                     position: latlng,
                     map: map,
                     title: msg[i].comName,
                 });
+                var infowindow = new google.maps.InfoWindow({
+                    content: "None"
+                });
+                google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+                    return function() {
+                        infowindow.setContent(content);
+                        infowindow.open(map,marker);
+                    };
+                })(marker,bName,infowindow));  
 			}
 			document.getElementsByClassName("resultDisp")[0].innerHTML = html_str;
 			// for (i = 0; i < msg.length; i++) {

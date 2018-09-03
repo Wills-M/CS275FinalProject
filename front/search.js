@@ -83,7 +83,7 @@ function getSearch() {
 
 //Handle Locate button onclick and get location using geolocation api
 function getLocation() {
-	window.location.href = "map.html";
+	window.location.href = "/front/map.html";
 }
 
 //Send location (latitude, longtitude) to server and redirect to map page

@@ -69,6 +69,21 @@ app.get('/bird', function (req, res) {//The description page for a bird
 		if (err)
 			console.log("Error gettting table");
 		else {
+			
+			result.forEach(function (bird, index) {
+				var URL = "https://en.wikipedia.org/w/api.php?action=query&redirects&titles=" + bird.scientificName.replace(" ", "_") + "&prop=pageimages&format=json&pithumbsize=500";
+				request(URL, function (error, response, body) {
+					var json = JSON.parse(body);
+					var pages = json.query.pages;
+					if (first(pages) && first(pages).thumbnail) {
+						var sql = 'UPDATE bird SET birdPic = \'' + first(pages).thumbnail.source + '\' WHERE scientificName = \'' + bird.scientificName + '\'';
+						con.query(sql, function (err, result) {
+							if (err) throw err;
+						});
+					}
+				});
+			});
+
 			rH.getDescription(result[0].description, result[0].scientificName.replace(" ", "_"));
 			rH.once('gotDesc', function(desc) {
 				//#region 
@@ -82,6 +97,7 @@ app.get('/bird', function (req, res) {//The description page for a bird
 					<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 					<script type="text/JavaScript" src="http://localhost:8080/front/bird.js"></script>
 					<script type="text/JavaScript" src="http://localhost:8080/front/searchbar.js"></script>
+					<script type="text/JavaScript" src="http://localhost:8080/front/search.js"></script>
 					<title>bird.watch</title>
 
 					<link rel="stylesheet" href="http://localhost:8080/front/css/normalize.css">

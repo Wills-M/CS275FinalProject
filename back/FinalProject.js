@@ -146,11 +146,10 @@ app.get('/bird', function (req, res) {//The description page for a bird
 app.get('/map', function (req, res) {//The Google Map feature showing the birds in the area
 	console.log('user accessing map');
 	var URL = "http://ebird.org/ws1.1/data/notable/geo/recent?lng="
-	URL += req.query.lng + "&lat=" + req.query.lat + "&fmt=json&locale=en_US";
+	URL += req.query.lng + "&lat=" + req.query.lat + "&dist=50&maxResults=50&fmt=json&locale=en_US";
 
 	request(URL, function (error, response, body) {
 		var json = JSON.parse(body);
-
 		res.send(json);
 
 	});

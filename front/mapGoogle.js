@@ -28,7 +28,24 @@ function getLatLong(position) {
         data: '{}',
         dataType: 'json',
         success: function( msg ) {
-            alert( JSON.stringify( msg ));
+            console.log( 'length: ' + msg.length );
+            console.log( JSON.stringify( msg ));
+            var html_str = "";
+			for (i = 0; i < msg.length; i++) {
+				html_str += `
+				<div class="resultItem whiteBkg">
+		            <div class="birdImg" name="` + msg[i].comName + `" onclick="getBird(this.attributes)"></div>
+		            <span name="` + msg[i].comName + `" onclick="getBird(this.attributes)">` + msg[i].comName + `</span>
+		            <div class="butCont">
+		                <button name="` + msg[i].comName + `" onclick="toAddList(this.attributes)"><img src="assets/icons/add.svg" alt=""></button>
+		                <button name="` + msg[i].comName + `" onclick="toCheckList(this.attributes)"><img src="assets/icons/check.svg" alt=""></button>
+		            </div>
+	       	 	</div>`
+			}
+			document.getElementsByClassName("resultDisp")[0].innerHTML = html_str;
+			// for (i = 0; i < msg.length; i++) {
+			// 	document.getElementsByClassName("birdImg")[i].style.backgroundImage = "url('" + msg[i].birdPic + "')";
+			// }
         },
         error: function( xhr, ajaxOptions, thrownError ) {
             alert( "Error: " + xhr.status );

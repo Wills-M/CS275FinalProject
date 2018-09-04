@@ -163,7 +163,7 @@ function getBird(attributes) {
 		data: "{}",
 		dataType: "html",
 		success: function(msg){
-			alert("No error connecting to localhost!");
+			//alert("No error connecting to localhost!");
 		},
 		error: function(xhr, ajaxOptions, thrownError){
 			alert("Error connecting to localhost!" + attributes.name.value);
@@ -189,7 +189,7 @@ function toAddList(attributes) {
 		data: "{}",
 		dataType: "html",
 		success: function(msg){
-			alert("No error connecting to localhost!");
+			//alert("No error connecting to localhost!");
 		},
 		error: function(xhr, ajaxOptions, thrownError){
 			alert("Error connecting to localhost!" + attributes.name.value);
@@ -220,11 +220,11 @@ function toCheckList(attributes) {
 //checks if we were redirected by another page to search for a bird
 function checkRedirect() {
 	var bird = readCookie( "birdSearch" );
-	alert( document.cookie );
-	alert( bird );
+	// alert( document.cookie );
+	// alert( bird );
 	if ( bird != "" ) {
 		$( '#searchBar' ).val( bird );
-		alert( $( '#searchBar' ).val());
+		//alert( $( '#searchBar' ).val());
 		document.cookie = "birdSearch=; path=/";
 		getSearch();
 	}

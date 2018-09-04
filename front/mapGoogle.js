@@ -22,7 +22,7 @@ function getLatLong(position) {
 
     var URL = 'http://localhost:8080/map?lat=' + pos.lat + "&lng=" + pos.lng;
     console.log("GET request: " + URL);
-    alert(URL);
+    // alert(URL);
     $.ajax({
         type: 'GET',
         url: URL,
@@ -89,8 +89,8 @@ function getBird(attributes) {
 		data: "{}",
 		dataType: "html",
 		success: function(msg){
-            alert("No error connecting to localhost!");
-            alert(URL);
+            // alert("No error connecting to localhost!");
+            // alert(URL);
 		},
 		error: function(xhr, ajaxOptions, thrownError){
 			alert("Error connecting to localhost!" + attributes.name.value);

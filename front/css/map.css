@@ -8,3 +8,7 @@
 .resultDisp {
     margin-top: 1rem;
 }
+
+.resultItem:after {
+    width: 100%;
+}

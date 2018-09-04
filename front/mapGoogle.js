@@ -37,7 +37,7 @@ function getLatLong(position) {
 			for (i = 0; i < msg.length; i++) {
 				html_str += `
 				<div class="resultItem whiteBkg">
-		            <div class="birdImg" name="` + msg[i].comName + `" onclick="getBird(this.attributes)"></div>
+		            
 		            <span name="` + msg[i].comName + `" onclick="getBird(this.attributes)">` + msg[i].comName + `</span>
 		            <div class="butCont">
 		                <button name="` + msg[i].comName + `" onclick="toAddList(this.attributes)"><img src="assets/icons/add.svg" alt=""></button>

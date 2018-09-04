@@ -188,8 +188,47 @@ app.get('/list', function (req, res) {//When the users select a list, this will 
 //endpoint for adding a bird to the user's to-see list
 app.get( '/add', function( req, res ) {
 	console.log( req.query.username + ' adding ' + req.query.name + ' to watch list' );
-	
-	//uhhh do your thing Wills
+	con.query('select x.* from user as u ' +
+				'join userlistxref as x on u.userID = x.userID ' +
+				'where u.userName = "' + req.query.username + '";', function(err, result, fields) {
+
+			if (err) throw err;
+			if (result.length > 0) {
+			con.query('insert into list (listID, listElement, listElementRank) ' +
+						'values (' + result[0].listID + ', (SELECT birdID FROM bird WHERE commonName = \'' + req.query.name + '\'), NULL);', function(err, result, fields) {
+				
+				if (err) throw err;
+			});
+		}
+		else {
+			con.beginTransaction(function (err) {
+				if (err) throw err;
+				con.query('insert into list (listID, listElement, listElementRank) ' +
+							'values (coalesce((SELECT MAX(listID) FROM userlistxref) + 1, 1), (SELECT birdID FROM bird WHERE commonName = "' + req.query.name + '"), 1);', function (err) {
+					if (err) {
+						con.rollback(function() {
+							throw err;
+						});
+					}
+					con.query('insert into userlistxref (userID, listID) ' +
+								'values ((SELECT userID FROM user WHERE userName = "' + req.query.username + '"), (SELECT MAX(listID) FROM list));', function (err) {
+						if (err) {
+							con.rollback(function() {
+								throw err;
+							});
+						}
+						con.commit(function(err) {
+							if (err) { 
+							  	con.rollback(function() {
+									throw err;
+							  	});
+							}
+						});
+					});
+				});
+			});
+		}
+	});
 });
 
 //endpoint for adding a bird to the user's seen list

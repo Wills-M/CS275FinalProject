@@ -5,7 +5,7 @@ function getSearch() {
 	//if (event.keyCode == 13) {
 		//Create URL to localhost search page
 		var URL = "http://localhost:8080/search?name=" + searchItem;
-		alert(URL);
+		// alert(URL);
 		
 		//Testing
 		// var jsonObj = {"birds": [

@@ -125,11 +125,9 @@ app.get('/bird', function (req, res) {//The description page for a bird
 							<li class="menuItem">
 								<label for="menuToggle">Close Menu</label>
 							</li>
-							<li class="menuItem">List 1</li>
-							<li class="menuItem">List 2</li>
-							<li class="menuItem">List 3</li>
-							<li class="menuItem">+ Add List</li>
-							<li class="menuItem">Logout</li>
+							<li class="menuItem" onclick="getList(this.id)" id="wantedList">Seen Birds</button></li>
+            				<li class="menuItem" onclick="getList(this.id)" id="seenList">To See List</li>
+            				<li class="menuItem"><label for="menuToggle">Close Menu</label></li>
 						</ul>
 					</div>
 
@@ -185,6 +183,20 @@ app.get('/list', function (req, res) {//When the users select a list, this will 
 			res.send(result);
 		}
 	});
+});
+
+//endpoint for adding a bird to the user's to-see list
+app.get( '/add', function( req, res ) {
+	console.log( req.query.username + ' adding ' + req.query.name + ' to watch list' );
+	
+	//uhhh do your thing Wills
+});
+
+//endpoint for adding a bird to the user's seen list
+app.get( '/check', function( req, res ) {
+	console.log( req.query.username + ' adding ' + req.query.name + ' to seen list' );
+
+	//same here bud
 });
 
 app.get('/login', function (req, res) {

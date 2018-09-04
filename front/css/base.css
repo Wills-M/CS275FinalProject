@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Comfortaa|Lato');
+@import url('https://fonts.googleapis.com/css?family=Comfortaa|Lato|Pacifico');
 
 * {
     box-sizing: border-box;
@@ -147,6 +147,19 @@ header {
     border-bottom: 1px solid #678D58;
 }
 
+.headFont {
+    font-family: 'comfortaa', serif;
+    color: #ae003d;
+}
+
+.bodyFont {
+    font-family: 'Lato', sans-serif;
+}
+
+.cursiveFont {
+    font-family: 'pacifico', serif;
+}
+
 .red {
     color: #fd393e;
 }
@@ -161,6 +174,10 @@ header {
 
 .gray {
     color: #444;
+}
+
+.darkGreen {
+    color: #678D58;
 }
 
 .whiteFill {
@@ -181,15 +198,6 @@ header {
 
 .greenBkg {
     background: #96DB92;
-}
-
-.headFont {
-    font-family: 'comfortaa', serif;
-    color: #ae003d;
-}
-
-.bodyFont {
-    font-family: 'Lato', sans-serif;
 }
 
 .italics {

@@ -1,3 +1,6 @@
+.resultDisp {
+    text-align: center;
+}
 .resultItem {
     position: relative;
     height: 5rem;

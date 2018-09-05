@@ -244,9 +244,16 @@ app.get( '/add', function( req, res ) {
 
 //endpoint for adding a bird to the user's seen list
 app.get( '/check', function( req, res ) {
-	console.log( req.query.username + ' adding ' + req.query.name + ' to seen list' );
-
-	//same here bud
+	con.query('delete l from user as u ' +
+			'join userlistxref as x on u.userID = x.userID ' +
+			'join list as l on x.listID = l.listID ' +
+			'join bird as b on l.listElement = b.birdID ' +
+			'where u.userName = "' + req.query.username + '" ' +
+			'and b.commonName = "' + req.query.name + '";',
+			function(err) {
+		if (err) throw err;
+		
+	});
 });
 
 app.get('/login', function (req, res) {

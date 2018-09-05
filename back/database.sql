@@ -110,7 +110,6 @@ CREATE TABLE `userlistxref` (
   PRIMARY KEY (`xrefID`),
   KEY `userID_idx` (`userID`),
   KEY `listID_idx` (`listID`),
-  CONSTRAINT `fkListIDXref` FOREIGN KEY (`listID`) REFERENCES `list` (`listid`),
   CONSTRAINT `fkUserIDXref` FOREIGN KEY (`userID`) REFERENCES `user` (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

@@ -179,7 +179,6 @@ function toAddList(attributes) {
 	//Create URL to localhost to add to add list
 	
 	var username = readCookie( "username" );
-	// console.log( "Username: " + username );
 	
 	var URL = "http://localhost:8080/add?username=" + username + "&name=" + attributes.name.value;
 	//Construct AJAX request to localhost
@@ -200,8 +199,10 @@ function toAddList(attributes) {
 //Handle Check button on Search page
 function toCheckList(attributes) {
 	alert("To Check List " + attributes.name.value);
+	
+	var username = readCookie( "username" );
 	//Create URL to localhost to add to check list
-	var URL = "http://localhost:8080/check?username=dummy&name=" + attributes.name.value;
+	var URL = "http://localhost:8080/check?username=" + username + "&name=" + attributes.name.value;
 	//Construct AJAX request to localhost
 	$.ajax({
 		type: "GET",

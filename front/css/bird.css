@@ -1,3 +1,7 @@
+.imgCardCont {
+    position: relative;
+    margin-bottom: 1rem;
+}
 .birdImg {
     width: 100%;
 
@@ -13,21 +17,31 @@
     justify-content: space-around;
     align-content: center;
     align-items: center;
-    height: 3rem;
+    height: 4rem;
     /* padding-top: 20px; */
     /* padding-bottom: 20px; */
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 
-    position: relative;
-    top: -10px;
-    z-index: 10;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 50%;
+    bottom: 0px;
+    z-index: 30;
+
+    background: rgba( 0, 0, 0, .25 );
+    box-shadow: 0 0 20px 10px rgba( 0, 0, 0, .25 );
+    
+    
 }
 
 .butCont button {
     height: 24px;
     position: relative;
-    top: 5px;
+    /* top: 5px; */
+    left: -1.5rem;
+    top: -.75rem;
+    transform: rotate(45deg);
 }
 
 .descriptDisp {

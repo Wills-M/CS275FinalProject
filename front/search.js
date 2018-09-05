@@ -65,7 +65,6 @@ function getSearch() {
 			            <span name="` + jsonObj[i].commonName + `" onclick="getBird(this.attributes)">` + jsonObj[i].commonName + `</span>
 			            <div class="butCont">
 			                <button name="` + jsonObj[i].commonName + `" onclick="toAddList(this.attributes)"><img src="assets/icons/add.svg" alt=""></button>
-			                <button name="` + jsonObj[i].commonName + `" onclick="toCheckList(this.attributes)"><img src="assets/icons/check.svg" alt=""></button>
 			            </div>
 		       	 	</div>`;
 				}
@@ -135,7 +134,6 @@ function getList(id) {
 		            <div class="birdImg" name="` + msg[i].commonName + `" onclick="getBird(this.attributes)"></div>
 		            <span name="` + msg[i].commonName + `" onclick="getBird(this.attributes)">` + msg[i].commonName + `</span>
 		            <div class="butCont">
-		                <button name="` + msg[i].commonName + `" onclick="toAddList(this.attributes)"><img src="assets/icons/add.svg" alt=""></button>
 		                <button name="` + msg[i].commonName + `" onclick="toCheckList(this.attributes)"><img src="assets/icons/check.svg" alt=""></button>
 		            </div>
 	       	 	</div>`
@@ -175,7 +173,7 @@ function getBird(attributes) {
 
 //Handle Add button on Search page
 function toAddList(attributes) {
-	alert("To Add List " + attributes.name.value);
+	console.log("To Add List " + attributes.name.value);
 	//Create URL to localhost to add to add list
 	
 	var username = readCookie( "username" );
@@ -198,9 +196,8 @@ function toAddList(attributes) {
 
 //Handle Check button on Search page
 function toCheckList(attributes) {
-	alert("To Check List " + attributes.name.value);
-	
 	var username = readCookie( "username" );
+	console.log("To Check List " + attributes.name.value);
 	//Create URL to localhost to add to check list
 	var URL = "http://localhost:8080/check?username=" + username + "&name=" + attributes.name.value;
 	//Construct AJAX request to localhost

@@ -122,10 +122,6 @@ app.get('/bird', function (req, res) {//The description page for a bird
 					<input class="invisible" id="menuToggle" type="checkbox">
 					<div class="menuDisp greenBkg">
 						<ul class="menu">
-							<li class="menuItem">
-								<label for="menuToggle">Close Menu</label>
-							</li>
-							<li class="menuItem" onclick="getList(this.id)" id="wantedList">Seen Birds</button></li>
             				<li class="menuItem" onclick="getList(this.id)" id="seenList">To See List</li>
             				<li class="menuItem"><label for="menuToggle">Close Menu</label></li>
 						</ul>
@@ -134,9 +130,8 @@ app.get('/bird', function (req, res) {//The description page for a bird
 					<div class="resultDisp">
 						<div class="imgCardCont roundCorners">
 							<img class="birdImg roundCorners" src="` + result[0].birdPic + `">
-							<div class="butCont darkGreenBkg">
+							<div class="butCont">
 								<button><img src="http://localhost:8080/front/assets/icons/add_white.svg" alt=""></button>
-								<button><img src="http://localhost:8080/front/assets/icons/check_white.svg" alt=""></button>
 							</div>
 						</div>
 						<div class="descriptDisp roundCorners whiteBkg bodyFont">

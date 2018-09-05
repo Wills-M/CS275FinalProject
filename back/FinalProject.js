@@ -100,6 +100,7 @@ app.get('/bird', function (req, res) {//The description page for a bird
 					<script type="text/JavaScript" src="http://localhost:8080/front/search.js"></script>
 					<title>bird.watch</title>
 
+					<link rel="stylesheet" href="http://localhost:8080/front/css/search.css">
 					<link rel="stylesheet" href="http://localhost:8080/front/css/normalize.css">
 					<link rel="stylesheet" href="http://localhost:8080/front/css/base.css">
 					<link rel="stylesheet" href="http://localhost:8080/front/css/bird.css">
@@ -127,11 +128,11 @@ app.get('/bird', function (req, res) {//The description page for a bird
 						</ul>
 					</div>
 
-					<div class="resultDisp">
+					<div class="resultDisp roundCorners">
 						<div class="imgCardCont roundCorners">
 							<img class="birdImg roundCorners" src="` + result[0].birdPic + `">
 							<div class="butCont">
-								<button><img src="http://localhost:8080/front/assets/icons/add_white.svg" alt=""></button>
+								<button name="` + result[0].commonName + `" onclick="toAddList(this.attributes)"><img src="http://localhost:8080/front/assets/icons/add_white.svg" alt=""></button>
 							</div>
 						</div>
 						<div class="descriptDisp roundCorners whiteBkg bodyFont">

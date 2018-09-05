@@ -134,7 +134,7 @@ function getList(id) {
 		            <div class="birdImg" name="` + msg[i].commonName + `" onclick="getBird(this.attributes)"></div>
 		            <span name="` + msg[i].commonName + `" onclick="getBird(this.attributes)">` + msg[i].commonName + `</span>
 		            <div class="butCont">
-		                <button name="` + msg[i].commonName + `" onclick="toCheckList(this.attributes)"><img src="assets/icons/check.svg" alt=""></button>
+		                <button name="` + msg[i].commonName + `" onclick="toCheckList(this.attributes)"><img src="http://localhost:8080/front/assets/icons/check.svg" alt=""></button>
 		            </div>
 	       	 	</div>`
 			}

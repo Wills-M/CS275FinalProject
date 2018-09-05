@@ -41,7 +41,6 @@ function getLatLong(position) {
 		            <span name="` + msg[i].comName + `" onclick="getBird(this.attributes)">` + msg[i].comName + `</span>
 		            <div class="butCont">
 		                <button name="` + msg[i].comName + `" onclick="toAddList(this.attributes)"><img src="assets/icons/add.svg" alt=""></button>
-		                <button name="` + msg[i].comName + `" onclick="toCheckList(this.attributes)"><img src="assets/icons/check.svg" alt=""></button>
 		            </div>
                     </div>`;
                 

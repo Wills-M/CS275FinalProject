@@ -192,12 +192,23 @@ app.get( '/add', function( req, res ) {
 				'join userlistxref as x on u.userID = x.userID ' +
 				'where u.userName = "' + req.query.username + '";', function(err, result, fields) {
 
-			if (err) throw err;
-			if (result.length > 0) {
-			con.query('insert into list (listID, listElement, listElementRank) ' +
-						'values (' + result[0].listID + ', (SELECT birdID FROM bird WHERE commonName = \'' + req.query.name + '\'), NULL);', function(err, result, fields) {
-				
-				if (err) throw err;
+		if (err) throw err;
+		if (result.length > 0) {
+			con.query('select b.* from user as u ' +
+			'join userlistxref as x on u.userID = x.userID ' +
+			'join list as l on x.listID = l.listID ' +
+			'join bird as b on l.listElement = b.birdID ' +
+			'where u.userName = "' + req.query.username + '" ' +
+			'and b.commonName = "' + req.query.name + '";',
+			function(err, innerResult) {
+				if (innerResult.length == 0)
+				{
+					con.query('insert into list (listID, listElement, listElementRank) ' +
+								'values (' + result[0].listID + ', (SELECT birdID FROM bird WHERE commonName = \'' + req.query.name + '\'), NULL);', function(err, result, fields) {
+								
+						if (err) throw err;
+					});
+				}
 			});
 		}
 		else {

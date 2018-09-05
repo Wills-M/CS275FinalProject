@@ -196,10 +196,7 @@ function toAddList(attributes) {
 
 //Handle Check button on Search page
 function toCheckList(attributes) {
-<<<<<<< Updated upstream
 	var username = readCookie( "username" );
-=======
->>>>>>> Stashed changes
 	console.log("To Check List " + attributes.name.value);
 	//Create URL to localhost to add to check list
 	var URL = "http://localhost:8080/check?username=" + username + "&name=" + attributes.name.value;
